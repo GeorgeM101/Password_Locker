@@ -1,3 +1,4 @@
+from collections import UserList
 import unittest
 from user import User
 
@@ -11,7 +12,7 @@ class TestContact(unittest.TestCase):
         '''
         Set up method to run before each test cases.
         '''
-        self.new_user = User("George", "Mboya", "3215", "george@ms.com")
+        self.new_user = UserList("George", "Mboya", "3215", "george@ms.com")
 
     def test_init(self):
 
