@@ -28,10 +28,29 @@ def main():
                 confirm_password = input()
 
             else:
-            print(f"{created_username}) your account was successfully created")
+                print(f"{created_username}) your account was successfully created")
             print("/n")
             print("Login to account")
             print("username")
             entered_username = input()
             print("input password")
             entered_password = input()
+
+            while entered_username != created_username or entered_password != created_password:
+                print("Invalid login details")
+            print("username")
+            entered_username = input()
+            print("Enter password")
+            entered_password = input()
+
+        else:
+            print(f"{entered_username}, welcome to your account")
+            print("/n")
+
+        elif short_code == "NA"
+        print("Welcome")
+        print("Enter username")
+        inserted_username = input()
+
+        print("input password")
+        inserted_password = input()
