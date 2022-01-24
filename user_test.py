@@ -1,56 +1,78 @@
-from collections import UserList
-import unittest
 from user import User
+import unittest
 
 
-class TestContact(unittest.TestCase):
-
+class TestAccount(unittest.TestCase):
     def tearDown(self):
-        User.account_list = []
+        User.user_users = []
 
     def setUp(self):
         '''
-        Set up method to run before each test cases.
+        this test runs before every test occurs
         '''
-        self.new_user = UserList("George", "Mboya", "3215", "george@ms.com")
+        self.new_user = User("George", "Mboya", "Leroy" "2586")
 
     def test_init(self):
-
+        '''
+        a test to assert whether the values entered would appear when the roperty is called
+        '''
         self.assertEqual(self.new_user.first_name, "George")
         self.assertEqual(self.new_user.last_name, "Mboya")
-        self.assertEqual(self.new_user.password, "3215")
-        self.assertEqual(self.new_user.email, "george@ms.com")
-
-        # to save user
+        self.assertEqual(self.new_user.user_name, "Leroy")
+        self.assertEqual(self.new_user.password, "2586")
 
     def test_save_user(self):
+        '''
+        a test to check whether the save function works
+        '''
+        self.new_user.save_account()
+        self.assertEqual(len(User.user_accounts), 1)
+
+    def test_save_multiple_user(self):
+        '''
+        a test that checks whether both values appended to the array are actually present\ and returns the acount itself
+        '''
+        self.new_user.save_account()
+        user_test = User('abcd', 'efgh', 'ijkl', 'mnop')
+        user_test.save_account()
+        self.assertEqual(len(User.user_accounts), 2)
+
+    def test_del_user(self):
+        '''
+        test that check the delete function
+        '''
+        self.new_user.save_account()
+        user_test = User('abcd', 'efgh', 'ijkl', 'mnop')
+        user_test.save_account()
+        self.new_user.delete_account()
+        self.assertEqual(len(User.user_accounts), 1)
+
+    def test_find_user_by_username(self):
+        '''
+        test to check whether the function used to find accounts really works
+        '''
         self.new_user.save_user()
-        self.assertEqual(len(User.account_list), 1)
+        user_test = User('abcd', 'efgh', 'ijkl', 'mnop')
+        user_test.save_account()
+        found_account = User.find_by_user_name('ijkl')
+        self.assertEqual(found_account.user_name, user_test.user_name)
 
-        # to delete user
-
-    def test_delete_user(self):
-        self.new_User.save_user()
-        test_user = User('test', '1234')
-        test_user.save_user()
-
-        self.new_User.delete_user()
-        self.assertEqual(len(User.contact_list), 1)
-
-    def test_save_multiple_contact(self):
+    def test_user_exists(self):
         '''
-        test_save_multiple_contact to check if we can save multiple contact
-        objects to our contact_list
+       returns a boolean if user profile exists
         '''
-        self.new_contact.save_contact()
-        test_user = User("Test", "user", "0712345678",
-                         "test@user.com")  # new contact
-        test_user.save_contact()
-        self.assertEqual(len(User.contact_list), 2)
+        self.new_user.save_user()
+        user_test = User('abcd', 'efgh', 'ijkl', 'mnop')
+        user_test.save_account()
+        account_exists = User.user_exists('ijkl')
+        self.assertTrue(account_exists)
 
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_display_profile(self):
+        '''
+        a test to check the display accounts function
+        '''
+        self.assertEqual(User.display_profile(),
+                         User.user_profiles)
 
 
 if __name__ == '__main__':

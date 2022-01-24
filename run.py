@@ -1,3 +1,5 @@
+#!/usr/bin/env python3.8
+
 from click import confirm
 from user import User
 
@@ -46,11 +48,6 @@ def main():
         else:
             print(f"{entered_username}, welcome to your account")
             print("/n")
-
-        elif short_code == "NA"
-        print("Welcome")
-        print("Enter username")
-        inserted_username = input()
 
         print("input password")
         inserted_password = input()
