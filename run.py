@@ -60,6 +60,8 @@ def main():
 
         print(" 1) LOGIN \n 2) CREATE AN ACCOUNT \n  3) DISPLAY ACCOUNTS \n 4) SIGN OUT")
 
+        # To login
+
         choice = int(input())
         if choice == 1:
             print('Enter username')
@@ -119,9 +121,10 @@ def main():
             else:
                 print('Invalid details')
 
+        # To create new account
+
         if choice == 2:
-            print('NEW ACCOUNT')
-            print('*'*100)
+            print('Create a new account')
 
             print('Enter your first name')
             first_name = input()
@@ -137,7 +140,9 @@ def main():
 
             save_account(create_account(
                 first_name, last_name, user_name, password))
+
             # create and save a new account
+
             print('YOUR ACCOUNT WAS SUCCESSFULLY CREATED!')
             while True:
 
@@ -148,8 +153,6 @@ def main():
 
                 log_choice = int(input())
                 if log_choice == 1:
-                    print('New page')
-                    print('*'*100)
 
                     print('Page name')
                     page = input()
@@ -173,9 +176,9 @@ def main():
 
                 elif log_choice == 3:
                     if display_pages():
-                        for pag in display_pages():
+                        for keyword in display_pages():
                             print(
-                                f'{pag.page}:{pag.password}'
+                                f'{keyword.page}:{keyword.password}'
                             )
                     else:
                         print('NO PASSWORD SAVED YET')
