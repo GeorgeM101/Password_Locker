@@ -1,53 +1,201 @@
 #!/usr/bin/env python3.8
-
-from click import confirm
 from user import User
+from password import Password
+
+
+def create_account(first_name, last_name, user_name, password):
+    user = User(first_name, last_name, user_name, password)
+    return user
+
+
+def save_account(user):
+    user.save_account()
+
+
+def delete_account(user):
+    user.delete_account()
+
+
+def find_accounts(user_name):
+    return User.find_by_user_name(user_name)
+
+
+def isexist_accounts(user_name):
+    return User.account_exists(user_name)
+
+
+def display_accounts():
+    return User.display_accounts()
+
+
+def create_page(page, password):
+    password = Password(page, password)
+    return password
+
+
+def save_page(password):
+    password.save_page()
+
+
+def find_page(pager):
+    return Password.find_by_page(pager)
+
+
+def isexist_page(pager):
+    return Password.page_exists(pager)
+
+
+def delete_page(password):
+    password.delete_page()
+
+
+def display_pages():
+    return Password.display_page()
 
 
 def main():
-
+    print('WELCOME TO PASSLOCK')
+    print('Select an option to use the page')
     while True:
-        print("Welcome to Password Locker")
-        print("/n")
-        print("Select code NA to create a new account,LI to login to your account or EX to exit the app")
-        short_code = input()
-        print("/n")
 
-        if short_code == "NA":
-            print("Create user name")
-            created_username = input()
+        print(" 1) LOGIN \n 2) CREATE AN ACCOUNT \n  3) DISPLAY ACCOUNTS \n 4) SIGN OUT")
 
-            print("Create password")
-            created_password = input()
+        choice = int(input())
+        if choice == 1:
+            print('Enter username')
+            username = input()
+            print('Enter passoword')
+            password = input()
+            account = find_accounts(username)
+            if account.user_name == username and account.password == password:
 
-            print("Re-enter password")
-            confirm_password = input()
+                print('logged in ')
+                while True:
 
-            while confirm_password != created_password:
-                print("Wrong password! Try again ")
-                created_password = input()
-                print("confirm your password")
-                confirm_password = input()
+                    print(
+                        f'{username}, Welcome! Choose an option to select a service')
 
+                    print(
+                        ' 1) Save new password \n 2) Delete password \n 3) Display saved passwords \n 4) Log out ')
+
+                    log_choice = int(input())
+                    if log_choice == 1:
+                        print('New page')
+                        print('*'*100)
+
+                        print('Page name')
+                        page = input()
+
+                        print('password')
+                        password = input()
+
+                    # created and saved page
+                        save_page(create_page(page, password))
+
+                    elif log_choice == 2:
+                        print("Enter the name of the page you want to delete")
+
+                        page = input()
+                        if isexist_page(page):
+                            remove_page = (page)
+                            delete_page(remove_page)
+
+                        else:
+                            print(f'I cant find {page}')
+
+                    elif log_choice == 3:
+                        if display_pages():
+                            for pag in display_pages():
+                                print(
+                                    f'{pag.page}:{pag.password}'
+                                )
+                        else:
+                            print('NO PASSWORD SAVED YET')
+                            print('\n')
+
+                    elif log_choice == 4:
+                        print('Thank you for using Password Locker')
+                        break
             else:
-                print(f"{created_username}) your account was successfully created")
-            print("/n")
-            print("Login to account")
-            print("username")
-            entered_username = input()
-            print("input password")
-            entered_password = input()
+                print('Invalid details')
 
-            while entered_username != created_username or entered_password != created_password:
-                print("Invalid login details")
-            print("username")
-            entered_username = input()
-            print("Enter password")
-            entered_password = input()
+        if choice == 2:
+            print('NEW ACCOUNT')
+            print('*'*100)
 
-        else:
-            print(f"{entered_username}, welcome to your account")
-            print("/n")
+            print('Enter your first name')
+            first_name = input()
 
-        print("input password")
-        inserted_password = input()
+            print('Enter your last name')
+            last_name = input()
+
+            print('Enter preferred username')
+            user_name = input()
+
+            print('Enter a secure password')
+            password = input()
+
+            save_account(create_account(
+                first_name, last_name, user_name, password))
+            # create and save a new account
+            print('YOUR ACCOUNT WAS SUCCESSFULLY CREATED!')
+            while True:
+
+                print(
+                    f'Welcome {user_name}, Select an option to navigate the web page')
+                print(
+                    ' 1) Save new password \n 2) Delete password \n 3) Display saved passwords \n 4) Log out ')
+
+                log_choice = int(input())
+                if log_choice == 1:
+                    print('New page')
+                    print('*'*100)
+
+                    print('Page name')
+                    page = input()
+
+                    print('password')
+                    password = input()
+
+                    # created and saved page
+                    save_page(create_page(page, password))
+
+                elif log_choice == 2:
+                    print("Enter the name of the page you want to delete")
+
+                    page = input()
+                    if isexist_page(page):
+                        remove_page = (page)
+                        delete_page(remove_page)
+
+                    else:
+                        print(f'{page} does not exist')
+
+                elif log_choice == 3:
+                    if display_pages():
+                        for pag in display_pages():
+                            print(
+                                f'{pag.page}:{pag.password}'
+                            )
+                    else:
+                        print('NO PASSWORD SAVED YET')
+
+                elif log_choice == 4:
+                    break
+
+        elif choice == 4:
+            if display_accounts():
+                for account in display_accounts():
+                    print(
+                        f'{account.user_name}'
+                    )
+            else:
+                print('Invalid')
+
+        elif choice == 5:
+            print('Thank you for choosing Password Locker')
+            break
+
+
+if __name__ == '__main__':
+    main()
