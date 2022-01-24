@@ -14,7 +14,7 @@ class TestAccount(unittest.TestCase):
 
     def test_init(self):
         '''
-        a test to assert whether the values entered would appear when the roperty is called
+        test to confirm whether entered values would return when called 
         '''
         self.assertEqual(self.new_account.first_name, 'hamida')
         self.assertEqual(self.new_account.last_name, 'mstafa')
@@ -39,7 +39,7 @@ class TestAccount(unittest.TestCase):
 
     def test_del_account(self):
         '''
-        test that check the delete function
+        tests the delete fuction 
         '''
         self.new_account.save_account()
         test_account = User('abcd', 'efgh', 'ijkl', 'mnop')
@@ -59,7 +59,7 @@ class TestAccount(unittest.TestCase):
 
     def test_account_exists(self):
         '''
-        unlike the previous test this test returns a true/false soort of answer depending on whether the account exists or not
+    test that returns a boolean value on whether the account exists
         '''
         self.new_account.save_account()
         test_account = User('abcd', 'efgh', 'ijkl', 'mnop')
