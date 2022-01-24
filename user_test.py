@@ -10,16 +10,16 @@ class TestAccount(unittest.TestCase):
         '''
         this test runs before every test occurs
         '''
-        self.new_account = User('hamida', 'mstafa', 'mids', '1996')
+        self.new_account = User('george', 'mboya', 'leroy', '2568')
 
     def test_init(self):
         '''
         test to confirm whether entered values would return when called 
         '''
-        self.assertEqual(self.new_account.first_name, 'hamida')
-        self.assertEqual(self.new_account.last_name, 'mstafa')
-        self.assertEqual(self.new_account.user_name, 'mids')
-        self.assertEqual(self.new_account.password, '1996')
+        self.assertEqual(self.new_account.first_name, 'george')
+        self.assertEqual(self.new_account.last_name, 'mboya')
+        self.assertEqual(self.new_account.user_name, 'Leroy')
+        self.assertEqual(self.new_account.password, '2568')
 
     def test_save_account(self):
         '''
