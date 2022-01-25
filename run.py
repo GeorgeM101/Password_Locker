@@ -54,11 +54,11 @@ def display_pages():
 
 
 def main():
-    print('WELCOME TO PASSLOCK')
+    print('Welcome to Password-Locker')
     print('Select an option to use the page')
     while True:
 
-        print(" 1) LOGIN \n 2) CREATE AN ACCOUNT \n  3) DISPLAY ACCOUNTS \n 4) SIGN OUT")
+        print(" 1) LOGIN \n 2) CREATE AN ACCOUNT \n 3) DISPLAY ACCOUNTS \n 4) SIGN OUT")
 
         # To login
 
@@ -82,8 +82,6 @@ def main():
 
                     log_choice = int(input())
                     if log_choice == 1:
-                        print('New page')
-                        print('*'*100)
 
                         print('Page name')
                         page = input()
@@ -103,16 +101,16 @@ def main():
                             delete_page(remove_page)
 
                         else:
-                            print(f'I cant find {page}')
+                            print(f'{page} does not exist')
 
                     elif log_choice == 3:
                         if display_pages():
-                            for pag in display_pages():
+                            for keyword in display_pages():
                                 print(
-                                    f'{pag.page}:{pag.password}'
+                                    f'{keyword.page}:{keyword.password}'
                                 )
                         else:
-                            print('NO PASSWORD SAVED YET')
+                            print('PASSWORD LOCKER EMPTY')
                             print('\n')
 
                     elif log_choice == 4:
@@ -147,7 +145,7 @@ def main():
             while True:
 
                 print(
-                    f'Welcome {user_name}, Select an option to navigate the web page')
+                    f'Welcome {user_name}, what would you like to do')
                 print(
                     ' 1) Save new password \n 2) Delete password \n 3) Display saved passwords \n 4) Log out ')
 
@@ -196,7 +194,7 @@ def main():
                 print('Invalid')
 
         elif choice == 5:
-            print('Thank you for choosing Password Locker')
+            print('Thank you for choosing Password Locker....')
             break
 
 
